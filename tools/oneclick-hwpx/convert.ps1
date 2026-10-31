@@ -9,7 +9,7 @@ function Repair-Hancom2018Header([string]$hwpxPath) {
         if (-not $e) { throw "HWPX header is missing" }
         $r = New-Object IO.StreamReader($e.Open(), [Text.Encoding]::UTF8)
         try { $xml = $r.ReadToEnd() } finally { $r.Dispose() }
-        $fixed = $xml.Replace('faceColor="none"', 'faceColor="#FFFFFF"').Replace('shadeColor="none"', 'shadeColor="#FFFFFFFF"')
+        $fixed = $xml.Replace('faceColor="none"', 'faceColor="#FFFFFFFF"').Replace('shadeColor="none"', 'shadeColor="#FFFFFFFF"')
         if ($fixed -ne $xml) {
             $test = New-Object Xml.XmlDocument
             $test.LoadXml($fixed)
